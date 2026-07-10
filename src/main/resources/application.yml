@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: transaction-risk-api
+
+  datasource:
+    url: jdbc:h2:mem:transactionrisk
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+  endpoint:
+    health:
+      show-details: always
+
+server:
+  port: 8080
