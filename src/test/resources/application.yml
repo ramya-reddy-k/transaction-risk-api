@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: transaction-risk-api-test
+
+  datasource:
+    url: jdbc:h2:mem:transactionrisktest
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+security:
+  jwt:
+    issuer: transaction-risk-api-test
+    secret: MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=
+    ttl: PT15M
+
+  demo-user:
+    username: demo
+    password: TestPassword123!
+
+management:
+  endpoint:
+    health:
+      show-details: never
