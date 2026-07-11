@@ -16,6 +16,7 @@ The application is deployed on Railway and exposes interactive OpenAPI documenta
 
 - Java 17 and Spring Boot 3
 - Versioned REST APIs
+- Transaction search, filtering, sorting, and pagination
 - Explainable transaction-risk scoring
 - LOW, MEDIUM, and HIGH risk classifications
 - Spring Data JPA persistence
@@ -70,9 +71,21 @@ Each assessment returns:
 | POST | `/api/v1/auth/token` | Public | Generate a JWT access token |
 | POST | `/api/v1/transactions` | Bearer JWT | Submit and evaluate a transaction |
 | GET | `/api/v1/transactions/{id}` | Bearer JWT | Retrieve a transaction assessment |
+| GET | `/api/v1/transactions` | Bearer JWT | Search, filter, sort, and paginate transactions |
 | GET | `/api/v1/status` | Public | View application status |
 | GET | `/actuator/health` | Public | View application health |
 | GET | `/swagger-ui.html` | Public | Open interactive API documentation |
+
+## Structured Error Responses
+
+Validation, malformed requests, invalid filters, and missing resources return a consistent response containing:
+
+- Timestamp
+- HTTP status
+- Error category
+- Human-readable message
+- Request path
+- Field-level validation details when applicable
 
 ## Authentication
 
@@ -247,8 +260,6 @@ This repository follows a professional Git workflow:
 - GitHub Actions CI pipeline
 - Kafka transaction events
 - Configurable database-backed risk rules
-- Search, filtering, and pagination
-- Structured API error responses
 - Testcontainers integration testing
 - Public cloud deployment
 
