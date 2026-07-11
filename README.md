@@ -4,6 +4,14 @@ A production-style Java backend application that accepts financial transactions 
 
 This project demonstrates secure REST API development, Spring Boot architecture, JWT authentication, database persistence, automated testing, OpenAPI documentation, and AI-assisted software engineering practices.
 
+## Live Application
+
+- [Interactive Swagger API](https://transaction-risk-api-production.up.railway.app/swagger-ui/index.html)
+- [Application Health Check](https://transaction-risk-api-production.up.railway.app/actuator/health)
+- [AI-Assisted Development Workflow](docs/ai-assisted-development.md)
+
+The application is deployed on Railway and exposes interactive OpenAPI documentation for authentication, transaction submission, retrieval, and risk evaluation.
+
 ## Key Features
 
 - Java 17 and Spring Boot 3
