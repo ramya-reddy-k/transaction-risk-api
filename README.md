@@ -16,6 +16,7 @@ The application is deployed on Railway and exposes interactive OpenAPI documenta
 
 - Java 17 and Spring Boot 3
 - Versioned REST APIs
+- Transactional outbox with reliable Kafka event publishing
 - Transaction search, filtering, sorting, and pagination
 - Explainable transaction-risk scoring
 - LOW, MEDIUM, and HIGH risk classifications
