@@ -270,3 +270,21 @@ This repository follows a professional Git workflow:
 
 - [GitHub](https://github.com/ramya-reddy-k)
 - [LinkedIn](https://www.linkedin.com/in/ramyaareddyk)
+
+## Database-configurable Risk Rules
+
+Risk-scoring rules are stored in the database and can be managed through authenticated admin endpoints.
+
+Supported rules:
+
+- High transaction amount
+- Foreign-country transactions
+- Unusual transaction hours
+- High-risk merchant categories
+
+Administrators can enable or disable rules and update their score, parameter, and explanation without changing Java code.
+
+Admin endpoints:
+
+- `GET /api/v1/admin/risk-rules`
+- `PUT /api/v1/admin/risk-rules/{code}`
