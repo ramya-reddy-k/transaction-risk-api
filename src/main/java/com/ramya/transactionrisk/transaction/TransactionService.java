@@ -1,5 +1,7 @@
 package com.ramya.transactionrisk.transaction;
 
+import com.ramya.transactionrisk.outbox.TransactionOutboxService;
+
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Locale;
@@ -18,13 +20,16 @@ public class TransactionService {
 
     private final TransactionRepository transactionRepository;
     private final RiskEvaluationService riskEvaluationService;
+    private final TransactionOutboxService transactionOutboxService;
 
     public TransactionService(
             TransactionRepository transactionRepository,
-            RiskEvaluationService riskEvaluationService
+            RiskEvaluationService riskEvaluationService,
+            TransactionOutboxService transactionOutboxService
     ) {
         this.transactionRepository = transactionRepository;
         this.riskEvaluationService = riskEvaluationService;
+        this.transactionOutboxService = transactionOutboxService;
     }
 
     @Transactional
@@ -43,7 +48,12 @@ public class TransactionService {
                 assessment.reasons()
         );
 
-        return toResponse(transactionRepository.save(entity));
+        TransactionEntity saved =
+                transactionRepository.save(entity);
+
+        transactionOutboxService.recordTransactionCreated(saved);
+
+        return toResponse(saved);
     }
 
     @Transactional(readOnly = true)

@@ -2,6 +2,17 @@ spring:
   application:
     name: transaction-risk-api
 
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+
+      properties:
+        enable.idempotence: true
+
   datasource:
     url: jdbc:h2:mem:transactionrisk
     driver-class-name: org.h2.Driver
@@ -22,6 +33,15 @@ security:
   demo-user:
     username: ${DEMO_USERNAME}
     password: ${DEMO_PASSWORD}
+
+app:
+  kafka:
+    enabled: ${KAFKA_ENABLED:false}
+    topic: ${KAFKA_TOPIC:transaction-created.v1}
+    publisher-delay-ms: ${KAFKA_PUBLISHER_DELAY_MS:5000}
+    maximum-attempts: ${KAFKA_MAXIMUM_ATTEMPTS:5}
+    send-timeout: ${KAFKA_SEND_TIMEOUT:PT10S}
+    stale-processing-timeout: ${KAFKA_STALE_PROCESSING_TIMEOUT:PT5M}
 
 management:
   endpoints:
