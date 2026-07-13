@@ -13,6 +13,12 @@ spring:
       properties:
         enable.idempotence: true
 
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: "1"
+    baseline-description: Existing schema
+    validate-on-migrate: true
   datasource:
     url: jdbc:h2:mem:transactionrisk
     driver-class-name: org.h2.Driver
@@ -21,7 +27,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     open-in-view: false
 
 security:
