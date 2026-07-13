@@ -288,3 +288,13 @@ Admin endpoints:
 
 - `GET /api/v1/admin/risk-rules`
 - `PUT /api/v1/admin/risk-rules/{code}`
+
+## Database Migrations with Flyway
+
+Database schema changes are managed through version-controlled Flyway migrations.
+
+- Initial schema migration: `V1__create_initial_schema.sql`
+- Flyway creates the schema for fresh PostgreSQL databases
+- Existing production databases are safely baselined
+- Hibernate validates the schema instead of modifying it
+- PostgreSQL Testcontainers verifies the migration during integration testing
